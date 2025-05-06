@@ -177,38 +177,39 @@ const Home = () => {
       </Box>
 
       {/* Category Grid */}
-      <div className="container mx-auto px-4 my-3 grid grid-cols-5 md:grid-cols-8 lg:grid-cols-10 gap-7">
-        {loadingCategory ? (
-          new Array(10).fill(null).map((_, index) => (
-            <div
-              key={index + "loadingcategory"}
-              className="bg-white rounded-lg p-4 min-h-36 grid gap-6 shadow animate-pulse"
-            >
-              <Skeleton variant="rectangular" width="100%" height={100} />
-              <Skeleton variant="text" height={30} width="80%" />
-            </div>
-          ))
-        ) : (
-          categoryData.map((cat) => (
-            <div
-              key={cat._id + "displayCategory"}
-              className="cursor-pointer mb-10 transition-transform duration-300 ease-in-out hover:scale-105"
-              onClick={() => handleRedirectProductListpage(cat._id, cat.name)}
-            >
-              <div className="relative w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 mx-auto rounded-full overflow-hidden">
-                <img
-                  src={cat.image}
-                  className="w-full h-full object-cover"
-                  alt={cat.name}
-                />
-                <div className="absolute bottom-0 left-0 right-0 bg-black/60 text-white text-xs text-center py-1 rounded-b-full">
-                  {cat.name}
-                </div>
-              </div>
-            </div>
-          ))
-        )}
+<div className="container mx-auto px-4 my-8 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-8">
+  {loadingCategory ? (
+    new Array(10).fill(null).map((_, index) => (
+      <div
+        key={index + "loadingcategory"}
+        className="bg-white rounded-lg p-4 min-h-36 grid gap-6 shadow animate-pulse"
+      >
+        <Skeleton variant="rectangular" width="100%" height={100} />
+        <Skeleton variant="text" height={30} width="80%" />
       </div>
+    ))
+  ) : (
+    categoryData.map((cat) => (
+      <div
+        key={cat._id + "displayCategory"}
+        className="cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105"
+        onClick={() => handleRedirectProductListpage(cat._id, cat.name)}
+      >
+        <div className="relative w-24 h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 mx-auto rounded-full overflow-hidden">
+          <img
+            src={cat.image}
+            className="w-full h-full object-cover"
+            alt={cat.name}
+          />
+          <div className="absolute bottom-0 left-0 right-0 bg-black/60 text-white text-xs text-center py-1 rounded-b-full">
+            {cat.name}
+          </div>
+        </div>
+      </div>
+    ))
+  )}
+</div>
+
 
       {/* Category Wise Product Display */}
       {categoryData?.map((c) => (
